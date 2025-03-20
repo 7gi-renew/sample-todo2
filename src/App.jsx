@@ -1,16 +1,45 @@
-import { useState } from "react";
+import { useEffect, useState, useContext } from "react";
 
 import "./App.css";
+import { getAllData, setNewData } from "./utils/SupabaseFunction";
+import { Information } from "./components/Information";
+import { RecordArea } from "./components/RecordArea";
 
 function App() {
+  const [data, setData] = useState([]);
+
   const [records, setRecords] = useState([]);
 
+  const [loading, setLoading] = useState(true);
   const [studyContent, setStudyContent] = useState("");
   const [studyTime, setStudyTime] = useState("");
-
   const [error, setError] = useState("");
-
   const [sumTime, setSumTime] = useState(0);
+
+  const [idNum, setIdNum] = useState(0);
+
+  useEffect(() => {
+    const getData = async () => {
+      const data = await getAllData();
+      setData(data);
+      setRecords(data);
+
+      const dataTime = data.map((d) => {
+        return d.time;
+      });
+
+      const dataTimeSum = dataTime.reduce((val1, val2) => {
+        return val1 + val2;
+      });
+
+      console.log(data.length);
+
+      setSumTime(dataTimeSum);
+      setLoading(false);
+      setIdNum(data.length);
+    };
+    getData();
+  }, []);
 
   const changeStudyContent = (e) => {
     setStudyContent(e.target.value);
@@ -25,9 +54,10 @@ function App() {
     if (studyContent === "" || studyTime === "") {
       setError("入力されていない項目があります");
     } else {
-      // studyContentとstudyTimeはそれぞれデータ取得用の変数
-      const newData = { title: studyContent, time: studyTime };
+      const newData = { id: `${idNum}`, title: studyContent, time: studyTime };
       const newRecords = [...records, newData];
+
+      console.log(newRecords);
 
       const newTime = newRecords.map((record) => {
         return record.time;
@@ -37,11 +67,17 @@ function App() {
         return current + next;
       });
 
+      setRecords(newRecords);
       setSumTime(newSum);
+
+      // 新規データの登録
+
+      setNewData(studyContent, studyTime);
 
       setError("");
       setStudyContent("");
       setStudyTime("");
+      setIdNum(idNum + 1);
     }
   };
 
@@ -57,27 +93,11 @@ function App() {
           <p>学習時間</p>
           <input type="number" value={studyTime} onChange={changeStudyTime} />
         </div>
-        <div className="information-area">
-          <p>入力されている内容：{studyContent}</p>
-          <p>入力されている時間：{studyTime}時間</p>
-          <button className="register" onClick={registerStudy}>
-            登録
-          </button>
-        </div>
-        {error}
 
-        <div className="record-area">
-          {records.map((record) => {
-            return (
-              <div key={index}>
-                <p>{`${record.title} ${record.time}時間`}</p>
-              </div>
-            );
-          })}
-        </div>
-        <div className="record-area">
-          <p>{`合計時間：${sumTime} / 1000h`}</p>
-        </div>
+        {loading && <p>Now Loading...</p>}
+        {loading || <Information content={studyContent} time={studyTime} onClick={registerStudy}></Information>}
+        {loading || error}
+        {loading || <RecordArea records={records} sumTime={sumTime} />}
       </div>
     </>
   );
