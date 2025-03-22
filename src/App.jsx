@@ -1,7 +1,7 @@
 import { useEffect, useState, useContext } from "react";
 
 import "./App.css";
-import { getAllData, setNewData } from "./utils/SupabaseFunction";
+import { getAllData, setNewData, deleteNewData } from "./utils/SupabaseFunction";
 import { Information } from "./components/Information";
 import { RecordArea } from "./components/RecordArea";
 
@@ -81,6 +81,31 @@ function App() {
     }
   };
 
+  const itemDelete = (index) => {
+    const newDataArrays = [...records];
+
+    const deleteData = newDataArrays.splice(index, 1);
+
+    setRecords(newDataArrays);
+
+    const newTime = newDataArrays.map((record) => {
+      return record.time;
+    });
+
+    const newSum = newTime.reduce((current, next) => {
+      return current + next;
+    });
+
+    const deleteTitle = deleteData[0].title;
+    const deleteTime = deleteData[0].time;
+
+    console.log(deleteTitle);
+    console.log(deleteTime);
+
+    setSumTime(newSum);
+    deleteNewData(deleteTitle, deleteTime);
+  };
+
   return (
     <>
       <div className="wrapper">
@@ -97,7 +122,7 @@ function App() {
         {loading && <p>Now Loading...</p>}
         {loading || <Information content={studyContent} time={studyTime} onClick={registerStudy}></Information>}
         {loading || error}
-        {loading || <RecordArea records={records} sumTime={sumTime} />}
+        {loading || <RecordArea records={records} sumTime={sumTime} itemDelete={itemDelete} />}
       </div>
     </>
   );

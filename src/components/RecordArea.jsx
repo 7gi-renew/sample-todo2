@@ -1,12 +1,15 @@
-export const RecordArea = ({ records, sumTime }) => {
+import styled from "styled-components";
+
+export const RecordArea = ({ records, sumTime, itemDelete }) => {
   return (
     <>
       <div className="record-area">
-        {records.map((record) => {
+        {records.map((record, index) => {
           return (
-            <div key={record.id}>
+            <SDiv key={record.id}>
               <p>{`${record.title} ${record.time}時間`}</p>
-            </div>
+              <SButton onClick={() => itemDelete(index)}>削除</SButton>
+            </SDiv>
           );
         })}
       </div>
@@ -16,3 +19,16 @@ export const RecordArea = ({ records, sumTime }) => {
     </>
   );
 };
+
+const SDiv = styled.div`
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+`;
+
+const SButton = styled.button`
+  padding: 7px 10px;
+  font-size: 14px;
+`;

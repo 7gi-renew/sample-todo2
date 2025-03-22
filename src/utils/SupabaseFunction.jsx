@@ -15,3 +15,14 @@ export const setNewData = async (title, time) => {
     console.error(err);
   }
 };
+
+export const deleteNewData = async (title, time) => {
+  try {
+    const { error } = await Supabase.from("study-record").delete().match({ title, time });
+    if (error) {
+      throw error;
+    }
+  } catch (err) {
+    console.error(err);
+  }
+};
