@@ -24,7 +24,7 @@ firebase.json
 src/utils/Firebase.jsx
 *.lock
 apphosting.yaml
-.github
+.github/workflows/*.yml
 
 # Editor directories and files
 .vscode/*

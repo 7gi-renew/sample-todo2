@@ -34,8 +34,6 @@ function App() {
         return val1 + val2;
       });
 
-      console.log(data.length);
-
       setSumTime(dataTimeSum);
       setLoading(false);
       setIdNum(data.length);
@@ -58,8 +56,6 @@ function App() {
     } else {
       const newData = { id: `${idNum}`, title: studyContent, time: studyTime };
       const newRecords = [...records, newData];
-
-      console.log(newRecords);
 
       const newTime = newRecords.map((record) => {
         return record.time;
@@ -100,9 +96,6 @@ function App() {
 
     const deleteTitle = deleteData[0].title;
     const deleteTime = deleteData[0].time;
-
-    console.log(deleteTitle);
-    console.log(deleteTime);
 
     setSumTime(newSum);
     deleteNewData(deleteTitle, deleteTime);
