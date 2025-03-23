@@ -16,11 +16,15 @@ dist-ssr
 
 .firebase/
 .firebaserc
-.github/
-*.yaml
+firebase-hosting-merge.yml*
+firebase-hosting-pull-request.yml*
+
+
 firebase.json
 src/utils/Firebase.jsx
 *.lock
+apphosting.yaml
+.github
 
 # Editor directories and files
 .vscode/*
