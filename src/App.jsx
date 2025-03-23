@@ -81,7 +81,6 @@ function App() {
 
   const itemDelete = (index) => {
     const newDataArrays = [...records];
-
     const deleteData = newDataArrays.splice(index, 1);
 
     setRecords(newDataArrays);
@@ -89,11 +88,9 @@ function App() {
     const newTime = newDataArrays.map((record) => {
       return record.time;
     });
-
     const newSum = newTime.reduce((current, next) => {
       return current + next;
     });
-
     const deleteTitle = deleteData[0].title;
     const deleteTime = deleteData[0].time;
 
