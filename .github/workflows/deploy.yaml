@@ -13,3 +13,5 @@ jobs:
       - name: HelloWorld
         run: |
           echo "hello world"
+      - name: checkout
+        uses: actions/checkout@v3
