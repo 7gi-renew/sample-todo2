@@ -10,5 +10,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
-          actions/checkout@v2
           edho "hello world"
