@@ -22,7 +22,7 @@ jobs:
         with:
           node-version: "20"
           cache: npm
-          cache-dependency-path: ./study-record/package-lock.json
+          cache-dependency-path: ./git-assignment2/package-lock.json
 
       - name: npm install
         run: npm i
