@@ -9,4 +9,6 @@ jobs:
   deploying:
     runs-on: ubuntu-latest
     steps:
-      - run: npm run build
+      - run: |
+          actions/checkout@v2
+          edho "hello world"
