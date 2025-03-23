@@ -7,12 +7,20 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+Makefile
 node_modules
-dist
 dist-ssr
 *.local
 .env*.local
 .env
+
+.firebase/
+.firebaserc
+.github/
+*.yaml
+firebase.json
+src/utils/Firebase.jsx
+*.lock
 
 # Editor directories and files
 .vscode/*

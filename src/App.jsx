@@ -5,6 +5,8 @@ import { getAllData, setNewData, deleteNewData } from "./utils/SupabaseFunction"
 import { Information } from "./components/Information";
 import { RecordArea } from "./components/RecordArea";
 
+import firebase from "./utils/Firebase";
+
 function App() {
   const [data, setData] = useState([]);
 
