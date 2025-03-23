@@ -10,5 +10,6 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     steps:
-      - run: |
+      - name: HelloWorld
+        run: |
           echo "hello world"
