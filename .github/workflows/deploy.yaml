@@ -12,8 +12,6 @@ strategy:
   matrix:
   node-version: [20.x]
 
-  deploying:
-    runs-on: ubuntu-latest
-    steps:
-      - run: |
-          echo "hello world"
+steps:
+  - run: |
+      echo "hello world"
