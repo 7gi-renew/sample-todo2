@@ -21,7 +21,6 @@ firebase-hosting-pull-request.yml*
 
 
 firebase.json
-src/utils/Firebase.jsx
 yarn.lock
 apphosting.yaml
 .github/workflows/*.yml
