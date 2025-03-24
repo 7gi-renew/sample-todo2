@@ -19,5 +19,5 @@ jobs:
           node-version: "20"
           cache: yarn
 
-      - name: yarn install
-        run: yarn install
+      - name: install
+        run: npm install
