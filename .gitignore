@@ -17,7 +17,7 @@ dist-ssr
 .firebase/
 firebase-hosting-merge.yml*
 firebase-hosting-pull-request.yml*
-
+.firebaserc
 
 yarn.lock
 apphosting.yaml
