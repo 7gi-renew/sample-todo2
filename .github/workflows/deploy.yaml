@@ -20,6 +20,5 @@ jobs:
           cache: npm
 
       - name: npm install
+        working-directory: ./package.json
         run: npm i
-        with:
-          path: "./package-json"
