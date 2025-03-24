@@ -10,7 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@firebasegen/default-connector": "link:dataconnect-generated/js/default-connector",
+    "@firebasegen/default-connector": "file:dataconnect-generated/js/default-connector",
     "@supabase/supabase-js": "^2.49.1",
     "components": "^0.1.0",
     "firebase": "^11.5.0",
