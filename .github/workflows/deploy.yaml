@@ -10,10 +10,6 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     steps:
-      - name: HelloWorld
-        run: |
-          echo "hello world"
-
       - name: checkout
         uses: actions/checkout@v4
 
@@ -25,3 +21,5 @@ jobs:
 
       - name: npm install
         run: npm i
+        with:
+          path: ./package-json
