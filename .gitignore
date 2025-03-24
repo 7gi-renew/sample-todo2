@@ -15,12 +15,10 @@ dist-ssr
 .env
 
 .firebase/
-.firebaserc
 firebase-hosting-merge.yml*
 firebase-hosting-pull-request.yml*
 
 
-firebase.json
 yarn.lock
 apphosting.yaml
 .github/workflows/*.yml
