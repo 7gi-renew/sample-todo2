@@ -20,4 +20,4 @@ jobs:
           cache: npm
 
       - name: check
-        run:: ls -la
+        run: ls -la
