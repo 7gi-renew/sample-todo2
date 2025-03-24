@@ -22,4 +22,4 @@ jobs:
       - name: npm install
         run: npm i
         with:
-          path: ./package-json
+          path: "./package-json"
