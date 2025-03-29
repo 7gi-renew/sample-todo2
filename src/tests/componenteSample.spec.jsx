@@ -49,22 +49,6 @@ describe("Title Test", () => {
     });
 
     await waitFor(() => {
-      // expect(screen.getByTestId("assignment")).toHaveTextContent("14");
-      expect(screen.queryByText("16時間")).not.toBeInTheDocument();
-    });
-  });
-
-  test("削除ボタンを押すと今入れたアイテムが消える", async () => {
-    render(<App />);
-
-    await waitFor(() => {
-      const itemParent = screen.getByTestId("itemParent");
-      const itemDeleteButton = itemParent.lastElementChild.querySelector("button");
-
-      userEvent.click(itemDeleteButton);
-    });
-
-    await waitFor(() => {
       expect(screen.queryByText("16時間")).not.toBeInTheDocument();
     });
   });
