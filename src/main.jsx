@@ -4,7 +4,7 @@ import "./index.css";
 import App from "./App.jsx";
 import firebase from "./utils/Firebase";
 
-if (import.meta.env.VITE_FIREBASE_NODE_ENV === "production") {
+if (process.env.VITE_FIREBASE_NODE_ENV === "production") {
   firebase.analytics();
 }
 

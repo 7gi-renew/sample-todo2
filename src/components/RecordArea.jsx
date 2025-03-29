@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const RecordArea = ({ records, sumTime, itemDelete }) => {
   return (
-    <>
+    <div>
       <div className="record-area">
         {records.map((record, index) => {
           return (
@@ -16,7 +16,7 @@ export const RecordArea = ({ records, sumTime, itemDelete }) => {
       <div className="record-area">
         <p>{`合計時間：${sumTime} / 1000h`}</p>
       </div>
-    </>
+    </div>
   );
 };
 

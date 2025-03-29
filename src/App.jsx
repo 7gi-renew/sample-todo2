@@ -1,9 +1,10 @@
 import { useEffect, useState, useContext } from "react";
-
 import "./App.css";
 import { getAllData, setNewData, deleteNewData } from "./utils/SupabaseFunction";
 import { Information } from "./components/Information";
 import { RecordArea } from "./components/RecordArea";
+
+import styled from "styled-components";
 
 import firebase from "./utils/Firebase";
 
@@ -101,23 +102,63 @@ function App() {
   return (
     <>
       <div className="wrapper">
-        <h1>学習記録一覧</h1>
+        <h1 data-testid="title">学習記録一覧</h1>
         <div className="form-area">
           <p>学習内容</p>
-          <input type="text" value={studyContent} onChange={changeStudyContent} />
+          <input type="text" data-testid="name-form" value={studyContent} onChange={changeStudyContent} />
         </div>
         <div className="form-area">
           <p>学習時間</p>
-          <input type="number" value={studyTime} onChange={changeStudyTime} />
+          <input type="number" data-testid="time-form" value={studyTime} onChange={changeStudyTime} />
         </div>
 
         {loading && <p>Now Loading...</p>}
-        {loading || <Information content={studyContent} time={studyTime} onClick={registerStudy}></Information>}
+        {/* {loading || <Information content={studyContent} time={studyTime} onClick={registerStudy}></Information>} */}
         {loading || error}
-        {loading || <RecordArea records={records} sumTime={sumTime} itemDelete={itemDelete} />}
+        {loading || (
+          <div className="information-area">
+            <p>入力されている内容：{studyContent}</p>
+            <p>入力されている時間：{studyTime}時間</p>
+            <button className="register" data-testid="register" onClick={registerStudy}>
+              登録
+            </button>
+          </div>
+        )}
+
+        {loading || (
+          <div>
+            <div data-testid="itemParent" className="record-area">
+              {records.map((record, index) => {
+                return (
+                  <SDiv key={record.id}>
+                    <p>{`${record.title} ${record.time}時間`}</p>
+                    <SButton onClick={() => itemDelete(index)}>削除</SButton>
+                  </SDiv>
+                );
+              })}
+            </div>
+            <div className="record-area">
+              <p>{`合計時間：${sumTime} / 1000h`}</p>
+            </div>
+          </div>
+        )}
+        {/* {loading || <RecordArea records={records} sumTime={sumTime} itemDelete={itemDelete} />} */}
       </div>
     </>
   );
 }
+
+const SDiv = styled.div`
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+`;
+
+const SButton = styled.button`
+  padding: 7px 10px;
+  font-size: 14px;
+`;
 
 export default App;
