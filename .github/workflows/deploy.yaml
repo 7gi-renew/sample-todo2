@@ -39,3 +39,9 @@ jobs:
         run: firebase deploy --token $FIREBASE_TOKEN
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+
+      - name: jest & react-testing-library install
+        run: npm install --save-dev jest @testing-library/react @testing-library/jest-dom @testing-library/user-event babel-jest @babel/preset-env @babel/preset-react
+
+      - name: test
+        run: npm run test
